@@ -16,7 +16,7 @@ public abstract class Trash extends GameObject {
     protected float livesLeft;
     public boolean drawWithRed = false;
     private int cadrWithRed = 0;
-    private static float timeToBox = 1, elapsedTime = 0;
+    private static float timeToBox = 0.6f, elapsedTime = 0;
     private static boolean canSpawnBox = true;
     public Trash(String texturePath, int x, int y, int width, int height, World world, short cBit, Vector2 scaleHitBox) {
         super(texturePath, x, y, width, height, world, cBit, scaleHitBox);
@@ -29,6 +29,7 @@ public abstract class Trash extends GameObject {
     }
 
     public static void updateCooldown(float delta) {
+        elapsedTime += delta;
         if (elapsedTime >= timeToBox) {
             canSpawnBox = true;
         }
